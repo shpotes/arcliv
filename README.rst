@@ -16,7 +16,7 @@ ArCLIv
 
 
 
-A command-line tool that makes the life (and ArXiv) easier for the researchers
+A command-line tool that makes life (and ArXiv) easier for the researchers
 
 
 * Free software: MIT license
