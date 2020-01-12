@@ -4,7 +4,7 @@ Helper class
 
 import datetime
 import re
-
+from typing import List, Tuple
 
 class Paper(object):
     def __init__(self,
@@ -60,13 +60,13 @@ class Paper(object):
         template = template.replace('Tittle', 'cap_title')
         template = template.replace('Author', 'cap_author')
         template = template.replace('Year', 'decade')
-
         
-        author_name, author_last_name = self.first_author
+        author_name, author_last_name = self.first_author()
         year = self.date.year
 
+        print(author_name)
         return template.format(
-            init=upper(author_name[0]),
+            init=author_name[0].upper(),
             author=author_last_name,
             Author=capitalize(author),
             id=self.arxiv_id,
@@ -74,13 +74,11 @@ class Paper(object):
             decade=str(year)[-2:]
         )
 
-
-
     def first_author(self) -> Tuple[str, str]:
         """
         Compute first author name
         """
-        first_author = self.authors[0]
+        first_author = self.author[0]
         *name, last_name = first_author.split()
         name = ' '.join(name)
         return name, last_name
